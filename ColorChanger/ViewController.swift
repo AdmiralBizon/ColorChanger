@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 15
         setColor()
+        setValue(for: redLabel, greenLabel, blueLabel)
     }
 
     @IBAction func sliderOnChange(_ sender: UISlider) {
@@ -38,16 +39,27 @@ class ViewController: UIViewController {
     }
     
     private func string(from slider: UISlider) -> String{
-        String(format: "%.01f", slider.value.rounded(.down))
+        String(format: "%.02f", slider.value)
     }
     
     private func setColor() {
         colorView.backgroundColor = UIColor(
-            red: CGFloat(redSlider.value.rounded(.down) / 255.0),
-            green: CGFloat(greenSlider.value.rounded(.down) / 255.0),
-            blue: CGFloat(blueSlider.value.rounded(.down) / 255.0),
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
             alpha: 1
         )
+    }
+    
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label.tag {
+            case 0: redLabel.text = string(from: redSlider)
+            case 1: greenLabel.text = string(from: greenSlider)
+            case 2: blueLabel.text = string(from: blueSlider)
+            default: break
+            }
+        }
     }
     
 }
