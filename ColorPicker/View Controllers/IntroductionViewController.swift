@@ -16,12 +16,7 @@ class IntroductionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let colorSettingsVC = segue.destination as! ColorSettingsViewController
         colorSettingsVC.delegate = self
-        colorSettingsVC.introVCColor = view.backgroundColor ?? UIColor(
-            red: 1,
-            green: 1,
-            blue: 1,
-            alpha: 1
-        )
+        colorSettingsVC.introVCColor = view.backgroundColor ?? .white
     }
     
 }
